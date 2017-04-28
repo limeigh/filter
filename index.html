@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>filter</title>
+</head>
+<body ng-app="testFilter" ng-controller="filterController">
+	<h1>currency过滤器</h1>
+	<p>{{money | currency : '$'}}</p>
+	<h1>date过滤器</h1>
+	<p>{{date | date : 'yyyy年MM月dd日 HH:mm:ss'}}</p>
+	<h1>limitTo过滤器</h1>
+	<p>{{msg | limitTo : 5 : 2}}...</p>
+	<script src="./libs/angular.min.js"></script>
+	<script>
+		var app=angular.module('testFilter',[])
+		app.controller('filterController', ['$scope', function($scope){
+			$scope.money=9998
+			$scope.date=3234234438888
+			$scope.msg='hello world !!!'
+		}])
+	</script>
+</body>
+</html>
