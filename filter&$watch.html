@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>filter</title>
+</head>
+<body ng-app="myApp" ng-controller="filterController">
+	<input type="text" ng-model="search">
+	<ul>
+		<li ng-repeat="item in todos | filter : search">{{item.name}},{{item.completed}}</li>
+	</ul>
+	<script src="libs/angular.min.js"></script>
+	<script>
+		var app=angular.module('myApp',[])
+		app.controller("filterController",['$scope','$location',function($scope,$location){
+			console.log($location)
+			$scope.search='a'
+			$scope.todos=[
+			 {id:1,name:'啊',completed:true},
+			 {id:2,name:'吧',completed:true},
+			 {id:3,name:'成',completed:false},
+			 {id:4,name:'的',completed:true},
+			 {id:5,name:'额',completed:false},
+			 {id:6,name:'放true',completed:false},
+			]
+			$scope.func=function(){
+				return $scope.search
+			}
+			$scope.$watch('func()',function(now,old){
+				console.log(now,old)
+			})
+		}])
+	</script>
+</body>
+</html>

@@ -11,13 +11,26 @@
 	<p>{{date | date : 'yyyy年MM月dd日 HH:mm:ss'}}</p>
 	<h1>limitTo过滤器</h1>
 	<p>{{msg | limitTo : 5 : 2}}...</p>
+	<h1>orderBy过滤器</h1>
+	<span ng-repeat="item in arr | orderBy : '-'">{{ item }}, </span>
+	<h1>json过滤器</h1>
+	<pre>{{myJson | json :2}}</pre>
+	<h1>js中使用过滤器</h1>
+	<p>{{rel1}}</p>
+	<p>{{rel2}}</p>
+	<p>{{rel3}}...</p>
 	<script src="./libs/angular.min.js"></script>
 	<script>
 		var app=angular.module('testFilter',[])
-		app.controller('filterController', ['$scope', function($scope){
+		app.controller('filterController', ['$scope','$filter', function($scope,$filter){
 			$scope.money=9998
 			$scope.date=3234234438888
 			$scope.msg='hello world !!!'
+			$scope.arr=[1,2,3,8,4,6,0]
+			$scope.myJson={name:'a',age:18}
+			$scope.rel1=$filter('currency')($scope.money,'¥')
+			$scope.rel2=$filter('date')($scope.date,'yyyy/MM/dd HH:mm:ss')
+			$scope.rel3=$filter('limitTo')($scope.msg,'5','2')
 		}])
 	</script>
 </body>
