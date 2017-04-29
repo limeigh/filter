@@ -12,8 +12,9 @@
 	<script src="libs/angular.min.js"></script>
 	<script>
 		var app=angular.module('myApp',[])
-		app.controller("filterController",['$scope','$location',function($scope,$location){
+		app.controller("filterController",['$scope','$location','myService',function($scope,$location,myService){
 			console.log($location)
+			console.log(myService)
 			$scope.search='a'
 			$scope.todos=[
 			 {id:1,name:'啊',completed:true},
@@ -29,6 +30,16 @@
 			$scope.$watch('func()',function(now,old){
 				console.log(now,old)
 			})
+		}])
+		app.service("myService",["$window",function($window){
+			console.log($window === window)
+			alert(1)
+			this.name='search'
+			this.age=28
+			this.sex='man'
+			this.func=function(){
+				return this.name
+			}
 		}])
 	</script>
 </body>
